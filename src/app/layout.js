@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
-import { Header } from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,9 +11,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        {children}
+      <body className={`${inter.className} bg-zinc-900 text-white`}>
+        <main className="max-w-xl mx-auto p-4 flex flex-col h-screen gap-4">
+          {children}
+        </main>
       </body>
     </html>
   );

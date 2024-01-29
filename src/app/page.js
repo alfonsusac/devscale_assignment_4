@@ -1,9 +1,20 @@
-import Image from "next/image";
+import { Header } from "@/components/Header";
+import { NoteAdd } from "@/components/NoteAdd";
+import { NoteSearch } from "@/components/NoteInput";
+import { NoteList } from "@/components/NoteList";
 
 export default function Home() {
+
+
   return (
-    <main>
-      Hello World
-    </main>
+    <>
+      <Header />
+      <div className="flex gap-2">
+        <NoteSearch />
+        <NoteAdd />
+      </div>
+      <NoteList />
+    </>
   );
 }
+
