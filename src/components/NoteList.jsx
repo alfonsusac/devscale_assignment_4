@@ -12,6 +12,7 @@ export const NoteList = async ({notes}) => {
           return (
             <Note
               key={note._id}
+              _id={note._id}
               name={note.name}
               description={note.description}
             />

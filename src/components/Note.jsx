@@ -1,16 +1,26 @@
 "use client"
 
+import { deleteNote } from "@/fetch/notes"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-export const Note = ({ name, description }) => {
+export const Note = ({ _id, name, description }) => {
   const [editMode, setEditMode] = useState(false)
   const enterEditMode = () => setEditMode(true)
   const exitEditMode = () => setEditMode(false)
+  const router = useRouter()
 
   function handleEditAcceptButtonClick() {
     exitEditMode()
   }
-  function handleDeleteButtonClick() {
+  async function handleDeleteButtonClick() {
+    try {
+      const res = await deleteNote(_id)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+    router.refresh()
     exitEditMode()
   }
 
