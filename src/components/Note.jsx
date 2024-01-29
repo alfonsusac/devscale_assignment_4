@@ -8,13 +8,80 @@ export const Note = () => {
   const exitEditMode = () => setEditMode(false)
 
   function handleEditAcceptButtonClick() {
-
     exitEditMode()
   }
   function handleDeleteButtonClick() {
-
     exitEditMode()
   }
+
+  return (
+    <article className="group relative w=full h-auto bg-zinc-700/60 rounded-md
+      flex
+    ">
+      <div className="grow min-h-20
+        p-2 pr-1
+      ">
+        <p className="text-sm font-medium p-2 pr-1 py-1 rounded-t-lg transition duration-150
+        [&[contenteditable=true]]:bg-black/10
+        [&[contenteditable=true]]:focus:bg-black/20
+        "
+          contentEditable={editMode}
+        >
+          Lorem ipsum
+        </p>
+        <p className="text-xs text-white/40 p-2 pr-1 py-1 rounded-b-lg transition duration-150
+        [&[contenteditable=true]]:bg-black/10
+        [&[contenteditable=true]]:focus:bg-black/20
+        "
+          contentEditable={editMode}
+        >
+          Lorem ipsum Lorem ipsum adf asf asd fas dfasdf asa sdf adf asd fasd fas fads fs s s . s ss s s s s s s s s s s . s s 
+        </p>
+      </div>
+      <div className="flex flex-col gap-1 p-2 pl-0 h-full">
+        {
+          !editMode && <button className="opacity-0 group-hover:opacity-100 
+            right-2 top-2 rounded-md
+            p-1.5 text-sm
+            bg-white/5 text-white/60
+            hover:bg-white/10 hover:text-white/80
+            active:brightness-75
+            "
+            onClick={enterEditMode}
+          >
+            <MaterialSymbolsEdit />
+          </button>
+        }
+        {
+          editMode && <>
+            <button className="
+              rounded-md
+              p-1.5 text-sm
+              bg-white/5 text-white/60
+              hover:bg-white/10 hover:text-white/80
+              active:brightness-75
+              "
+              onClick={handleEditAcceptButtonClick}
+            >
+              <IcRoundDone />
+            </button>
+            <button className="
+              rounded-md
+              p-1.5 text-sm
+              bg-white/5 text-white/60
+              hover:bg-red-500/60 hover:text-white/80
+              active:brightness-75
+              "
+              onClick={handleDeleteButtonClick}
+            >
+              <MaterialSymbolsDeleteRounded />
+            </button>
+          </>
+        }
+      </div>
+    </article>
+  )
+
 
   return (
     <article className="group relative w-full h-auto bg-white/10 rounded-md p-2">

@@ -6,4 +6,27 @@
   body {
     @apply bg-slate-100 tracking-tight
   }
+  input, textarea {
+    @apply w-full text-inherit 
+    /* bg-black/5  */ bg-inherit
+    caret-white/40
+    rounded-md 
+    focus:bg-black/10
+    px-2 py-1
+    outline-none
+    placeholder:text-white/20
+    placeholder:font-light
+    resize-none
+    font-light
+  }
+  button {
+    @apply active:brightness-90
+  }
+  *[contenteditable=true]{
+    @apply focus:outline-none
+  }
+}
+
+@layer components {
+
 }

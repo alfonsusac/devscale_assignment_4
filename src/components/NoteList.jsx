@@ -1,4 +1,4 @@
-import { Note } from "./NoteItem"
+import { Note } from "./Note"
 
 export const NoteList = () => {
 

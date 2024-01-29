@@ -1,15 +1,21 @@
-export const NoteAdd = () => {
+"use client"
 
+import { isNewPost } from "@/atoms/inputAtom"
+import { useAtom } from 'jotai'
+
+
+export const NoteAdd = ({ expanded, setExpanded }) => {
+  const [_, setIsAdding] = useAtom(isNewPost)
 
   return (
     <button className="bg-zinc-800 rounded-md p-3 aspect-square text-xl
-      hover:bg-zinc-300 hover:text-zinc-800 transition
-    ">
+      hover:bg-zinc-300 hover:text-zinc-800 transition"
+      onClick={() => { setIsAdding(prev => !prev) }}
+    >
       <MaterialSymbolsAdd />
     </button>
   )
 }
-
 
 export function MaterialSymbolsAdd(props) {
   return (
