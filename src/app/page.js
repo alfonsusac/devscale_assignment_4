@@ -3,8 +3,12 @@ import { NewNote } from "@/components/NewNote";
 import { NoteAdd } from "@/components/NoteAdd";
 import { NoteList } from "@/components/NoteList";
 import { NoteSearch } from "@/components/NoteSearch";
+import { fetchNotes } from "@/fetch/notes";
 
-export default function Home() {
+export default async function Home() {
+
+  const notes = await fetchNotes()
+
   return (
     <>
       <Header />
@@ -13,7 +17,7 @@ export default function Home() {
         <NoteSearch />
         <NoteAdd />
       </div>
-      <NoteList />
+      <NoteList notes={notes}/>
     </>
   );
 }
