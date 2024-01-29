@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export const Note = () => {
+export const Note = ({ name, description }) => {
   const [editMode, setEditMode] = useState(false)
   const enterEditMode = () => setEditMode(true)
   const exitEditMode = () => setEditMode(false)
@@ -27,7 +27,7 @@ export const Note = () => {
         "
           contentEditable={editMode}
         >
-          Lorem ipsum
+          {name}
         </p>
         <p className="text-xs text-white/40 p-2 pr-1 py-1 rounded-b-lg transition duration-150
         [&[contenteditable=true]]:bg-black/10
@@ -35,7 +35,7 @@ export const Note = () => {
         "
           contentEditable={editMode}
         >
-          Lorem ipsum Lorem ipsum adf asf asd fas dfasdf asa sdf adf asd fasd fas fads fs s s . s ss s s s s s s s s s s . s s 
+          {description}
         </p>
       </div>
       <div className="flex flex-col gap-1 p-2 pl-0 h-full">

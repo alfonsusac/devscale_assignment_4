@@ -1,6 +1,6 @@
 "use client"
 
-import { isNewPost } from "@/atoms/inputAtom"
+import { isNewPost } from "@/atoms/atoms"
 import { useAtom } from 'jotai'
 
 
