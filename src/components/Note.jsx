@@ -1,17 +1,36 @@
 "use client"
 
-import { deleteNote } from "@/fetch/notes"
+import { deleteNote, updateNote } from "@/fetch/notes"
 import { useRouter } from "next/navigation"
+import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from "react"
 
 export const Note = ({ _id, name, description }) => {
   const [editMode, setEditMode] = useState(false)
   const enterEditMode = () => setEditMode(true)
   const exitEditMode = () => setEditMode(false)
+  const [title, setTitle] = useState(name)
+  const [desc, setDesc] = useState(description)
   const router = useRouter()
 
-  function handleEditAcceptButtonClick() {
+  function handleTitleChange(e) {
+    console.log(e.target.value)
+    setTitle(e.target.value)
+  }
+  function handleDescriptionChange(e) {
+    console.log(e.target.value)
+    setDesc(e.target.value)
+  }
+
+  async function handleEditAcceptButtonClick() {
+    try {
+      const res = await updateNote(_id, title, desc)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
     exitEditMode()
+    router.refresh()
   }
   async function handleDeleteButtonClick() {
     try {
@@ -20,33 +39,53 @@ export const Note = ({ _id, name, description }) => {
     } catch (error) {
       console.log(error)
     }
-    router.refresh()
     exitEditMode()
+    router.refresh()
   }
 
   return (
     <article className="group relative w=full h-auto bg-zinc-700/60 rounded-md
       flex
     ">
-      <div className="grow min-h-20
-        p-2 pr-1
+      <div className="w-0 grow min-h-20
+        p-2 pr-1 flex flex-col
       ">
-        <p className="text-sm font-medium p-2 pr-1 py-1 rounded-t-lg transition duration-150
-        [&[contenteditable=true]]:bg-black/10
-        [&[contenteditable=true]]:focus:bg-black/20
-        "
-          contentEditable={editMode}
-        >
-          {name}
-        </p>
-        <p className="text-xs text-white/40 p-2 pr-1 py-1 rounded-b-lg transition duration-150
-        [&[contenteditable=true]]:bg-black/10
-        [&[contenteditable=true]]:focus:bg-black/20
-        "
-          contentEditable={editMode}
-        >
-          {description}
-        </p>
+        {
+          !editMode && <>
+            <p className="text-sm font-medium p-2 pr-1 py-1 pb-0 rounded-t-lg transition duration-150 tracking-tight
+              whitespace-break-spaces break-words"
+            >
+              {title}
+            </p>
+            <p className="text-xs text-white/40 p-2 pr-1 py-1 rounded-b-lg transition duration-150 tracking-tight
+              min-w-0 w-auto whitespace-break-spaces break-words"
+            >
+              {desc}
+            </p>
+          </>
+        }
+        {
+          !!editMode && <>
+            <TextareaAutosize className="text-sm font-medium p-2 pr-1 py-1 pb-0
+            rounded-none rounded-t-lg 
+            transition duration-150
+            bg-black/10 focus:bg-black/20
+            tracking-tight
+            "
+              onChange={handleTitleChange}
+              value={title}
+            />
+            <TextareaAutosize className="text-xs text-white/40 p-2 pr-1 py-1 
+            rounded-none rounded-b-lg 
+            transition duration-150
+            bg-black/10 focus:bg-black/20
+            tracking-tight font-normal
+            "
+              onChange={handleDescriptionChange}
+              value={desc}
+            />
+          </>
+        }
       </div>
       <div className="flex flex-col gap-1 p-2 pl-0 h-full">
         {
@@ -89,75 +128,6 @@ export const Note = ({ _id, name, description }) => {
           </>
         }
       </div>
-    </article>
-  )
-
-
-  return (
-    <article className="group relative w-full h-auto bg-white/10 rounded-md p-2">
-      {
-        !editMode && <>
-          <p className="text-sm font-medium p-2 py-1">
-            Lorem ipsum
-          </p>
-          <p className="text-xs text-white/40 p-2 py-1">
-            Lorem ipsum Lorem ipsum adf asf asd fas dfasdf as
-          </p>
-          <button className="block absolute opacity-0 group-hover:opacity-100 
-            right-2 top-2 rounded-md
-            p-1.5 text-sm
-            bg-white/5 text-white/60
-            hover:bg-white/10 hover:text-white/80
-            active:brightness-75
-            "
-            onClick={enterEditMode}
-          >
-            <MaterialSymbolsEdit />
-          </button>
-        </>
-      }
-      {
-        !!editMode && <>
-          <input
-            className="text-sm font-medium 
-              bg-black/10 p-2 py-1 rounded-md block tracking-[inherit]
-              focus:outline-none focus:bg-black/20
-              "
-            defaultValue={"Lorem ipsum"} />
-          <div
-            contentEditable
-            className="text-xs text-white/40 
-              bg-black/10 p-2 py-1 rounded-md block tracking-[inherit]
-              focus:outline-none focus:bg-black/20
-              "
-            value={"Lorem ipsum Lorem ipsum adf asf asd fas dfasdf as"}
-          >{"Lorem ipsum Lorem ipsum adf asf asd fas dfasdf as"}</div>
-          <div className="absolute right-2 top-2 flex flex-col gap-1">
-            <button className="
-              rounded-md
-              p-1.5 text-sm
-              bg-white/5 text-white/60
-              hover:bg-white/10 hover:text-white/80
-              active:brightness-75
-              "
-              onClick={handleEditAcceptButtonClick}
-            >
-              <IcRoundDone />
-            </button>
-            <button className="
-              rounded-md
-              p-1.5 text-sm
-              bg-white/5 text-white/60
-              hover:bg-red-500/60 hover:text-white/80
-              active:brightness-75
-              "
-              onClick={handleDeleteButtonClick}
-            >
-              <MaterialSymbolsDeleteRounded />
-            </button>
-          </div>
-        </>
-      }
     </article>
   )
 }
