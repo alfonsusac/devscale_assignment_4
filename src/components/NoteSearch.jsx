@@ -1,6 +1,16 @@
 "use client"
 
+import { searchNoteAtom } from "@/atoms/atoms"
+import { useAtom } from 'jotai'
+
+
 export const NoteSearch = () => {
+
+  const [search, setSearch] = useAtom(searchNoteAtom)
+
+  function handleSearchInputChange(e) {
+    setSearch(e.target.value)
+  }
 
   return (
     <div
@@ -12,6 +22,8 @@ export const NoteSearch = () => {
     >
       <input placeholder="Search..."
         className="grow p-1 px-2 m-1.5 mr-0 focus:outline-none bg-inherit placeholder:text-zinc-500 focus:bg-transparent"
+        value={search}
+        onChange={handleSearchInputChange}
       />
       <button className="m-1.5 p-2 text-zinc-200 rounded-md text-lg 
       hover:bg-white hover:text-zinc-800
