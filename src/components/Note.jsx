@@ -30,8 +30,7 @@ export const Note = ({ _id, name, description }) => {
     if (isChanged)
       try {
         setLoading(true)
-        const res = await updateNote(_id, title, desc)
-        console.log(res)
+        await updateNote(_id, title, desc)
       } catch (error) {
         console.log(error)
       } finally {
@@ -43,8 +42,7 @@ export const Note = ({ _id, name, description }) => {
   async function handleDeleteButtonClick() {
     try {
       setLoading(true)
-      const res = await deleteNote(_id)
-      console.log(res)
+      await deleteNote(_id)
       toast.success("Successfully Deleted")
     } catch (error) {
       console.log(error)
@@ -53,7 +51,7 @@ export const Note = ({ _id, name, description }) => {
   }
 
   return (
-    <article className="group relative w=full h-auto bg-zinc-700/60 rounded-md
+    <article className="group relative w=full h-auto bg-[#1e223d] rounded-md
       flex
     ">
       <div className="w-0 grow min-h-20

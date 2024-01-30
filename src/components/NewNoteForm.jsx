@@ -51,7 +51,7 @@ export const NewNoteForm = () => {
 
   return (
     <>
-      <div className="max-w-xs bg-zinc-800 p-2 rounded-md flex flex-col w-full h-40 items-center justify-center">
+      <div className="max-w-xs bg-[#1e223d] p-2 rounded-md flex flex-col w-full h-40 items-center justify-center">
         {
           formState === "success" &&
           <div className="text-4xl">
