@@ -1,4 +1,6 @@
 import { Inter } from "next/font/google";
+import { Toaster, toast } from 'sonner'
+
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,6 +14,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-zinc-900 text-white`}>
+        <Toaster
+          duration={2000}
+          expand={true}
+          position="bottom-center"
+          toastOptions={{
+            unstyled: true,
+            className: "bg-black items-center",
+            classNames: {
+              toast: 'bg-zinc-700 p-4 py-2 rounded-lg flex gap-2 items-center shadow-md w-full justify-center text-sm text-white/60 ',
+              title: 'text-red-400',
+              description: 'text-red-400',
+              actionButton: 'bg-zinc-400',
+              cancelButton: 'bg-orange-400',
+              closeButton: 'bg-lime-400',
+              success: 'bg-green-900'
+            }
+          }}
+        />
         <main className="max-w-xl mx-auto p-4 flex flex-col h-screen gap-4">
           {children}
         </main>
