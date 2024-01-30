@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             unstyled: true,
             className: "bg-black items-center",
             classNames: {
-              toast: 'bg-zinc-700 p-4 py-2 rounded-lg flex gap-2 items-center shadow-md w-full justify-center text-sm text-white/60 ',
+              toast: 'bg-zinc-700 p-4 py-2 rounded-lg flex gap-2 items-center shadow-md w-full justify-center text-sm font-semibold text-white/60 ',
               title: 'text-red-400',
               description: 'text-red-400',
               actionButton: 'bg-zinc-400',

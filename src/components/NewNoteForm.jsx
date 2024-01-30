@@ -38,7 +38,7 @@ export const NewNoteForm = () => {
       const res = await postNote(title, desc)
       console.log(res)
       setFormState("success")
-      toast.success("Note Created 2")
+      toast.success("Note Created")
       await delay(1000)
       setIsAdding(false)
       setTitle("")

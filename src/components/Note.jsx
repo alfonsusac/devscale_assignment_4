@@ -45,7 +45,7 @@ export const Note = ({ _id, name, description }) => {
       setLoading(true)
       const res = await deleteNote(_id)
       console.log(res)
-      toast("Successfully Deleted")
+      toast.success("Successfully Deleted")
     } catch (error) {
       console.log(error)
     }
