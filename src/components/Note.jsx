@@ -11,6 +11,7 @@ export const Note = ({ _id, name, description }) => {
   const exitEditMode = () => setEditMode(false)
   const [title, setTitle] = useState(name)
   const [desc, setDesc] = useState(description)
+  const isChanged = name !== title || description !== desc
   const router = useRouter()
 
   function handleTitleChange(e) {
@@ -21,6 +22,7 @@ export const Note = ({ _id, name, description }) => {
   }
 
   async function handleEditAcceptButtonClick() {
+    if(isChanged)
     try {
       const res = await updateNote(_id, title, desc)
       console.log(res)
