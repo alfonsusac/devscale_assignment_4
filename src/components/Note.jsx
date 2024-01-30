@@ -14,11 +14,9 @@ export const Note = ({ _id, name, description }) => {
   const router = useRouter()
 
   function handleTitleChange(e) {
-    console.log(e.target.value)
     setTitle(e.target.value)
   }
   function handleDescriptionChange(e) {
-    console.log(e.target.value)
     setDesc(e.target.value)
   }
 

@@ -7,9 +7,7 @@ import { useAtom } from 'jotai'
 
 export const NoteList = ({notes}) => {
 
-
   const [search] = useAtom(searchNoteAtom)
-  // const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   let list
   if (search === "") {
