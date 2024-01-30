@@ -19,9 +19,7 @@ export const NewNote = () => {
     "
       data-expanded={isAdding}
     >
-      {
-        isAdding && <NewNoteForm />
-      }
+      <NewNoteForm />
     </div>
   )
 }
